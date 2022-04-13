@@ -18,4 +18,4 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag djcollabback:$(date +%s)
+      run: mvn spring-boot:build-image -Dspring-boot.build-image.imageName=djcollabback
