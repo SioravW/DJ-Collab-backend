@@ -5,9 +5,9 @@ name: Build & test services
 
 on:
   push:
-    branches: [ dev ]
+    branches: [ main, dev ]
   pull_request:
-    branches: [ master, dev ]
+    branches: [ main, dev ]
 
 jobs:
   activity-service:
