@@ -20,23 +20,23 @@ public class UserController {
         this.service = service;
     }
 
-    @PostMapping(value = "/user/")
+    @PostMapping
     public User AddUser(@RequestBody AddUserDTO DTO) {
 
         return service.addUser(DTO);
     }
 
-    @GetMapping(value = "/user/all")
+    @GetMapping
     public List<User> GetAllUsers() {
         return service.getAllUsers();
     }
 
-    @PutMapping(value = "/user/{id}")
+    @PutMapping(value = "/{id}")
     public User updateUser(@PathVariable long id, @RequestBody UpdateUserDTO DTO){
         return service.updateUser(id, DTO);
     }
 
-    @DeleteMapping(value = "/user/{id}")
+    @DeleteMapping(value = "/{id}")
     public boolean deleteUser(@PathVariable long id){
         return service.deleteUser(id);
     }
