@@ -10,7 +10,8 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.UUID;
 
-@RestController(value = "/user")
+@RequestMapping(path = "/user")
+@RestController
 @CrossOrigin(origins = "*")
 public class UserController {
 
