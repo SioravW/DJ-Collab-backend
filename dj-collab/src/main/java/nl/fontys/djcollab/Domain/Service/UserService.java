@@ -3,9 +3,12 @@ package nl.fontys.djcollab.Domain.Service;
 import nl.fontys.djcollab.Database.Repository.IUserRepository;
 import nl.fontys.djcollab.Domain.DTO.AddUserDTO;
 import nl.fontys.djcollab.Domain.DTO.UpdateUserDTO;
+import nl.fontys.djcollab.Domain.Events.UsernameChangeEvent;
 import nl.fontys.djcollab.Domain.DTO.UserDTO;
 import nl.fontys.djcollab.Domain.Models.User;
+import org.springframework.amqp.core.AmqpTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -20,9 +23,17 @@ public class UserService {
     private IUserRepository repository;
 
     @Autowired
-    public UserService(IUserRepository repository) {
+    private UserService(IUserRepository repository) {
         this.repository = repository;
     }
+
+    @Autowired
+    private AmqpTemplate rabbitTemplate;
+
+    @Value("${fontys.rabbitmq.exchange}")
+    private String exchange;
+    @Value("${fontys.rabbitmq.routingkey}")
+    private String routingkey;
 
     public UserDTO addUser(AddUserDTO DTO)
     {
@@ -73,6 +84,12 @@ public class UserService {
         user.setPassword(DTO.getPassword());
 
         User savedUser = repository.save(user);
+
+        UsernameChangeEvent usernameChangeEvent = new UsernameChangeEvent();
+        usernameChangeEvent.setUsername(savedUser.getUsername());
+        usernameChangeEvent.setUserId(savedUser.getExternalId());
+        rabbitTemplate.convertAndSend(exchange, routingkey, usernameChangeEvent);
+
         return UserDTO.builder()
                 .id(user.getExternalId())
                 .username(user.getUsername())
