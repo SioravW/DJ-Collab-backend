@@ -23,6 +23,6 @@ jobs:
     - name: Build and push
       uses: docker/build-push-action@v2
       with:
-        context: .
+        context: ./dj-collab
         push: true
         tags: sioravw/dj-collab:userservice
