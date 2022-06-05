@@ -1,0 +1,31 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: userservice
+  namespace: backend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: UserService
+  strategy:
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: UserService
+    spec:
+      containers:
+        - name: registry.digitalocean.com/djcollab
+          image: sioravw/dj-collab:userservice
+          ports:
+            - name: http
+              containerPort: 8081
+          resources:
+            requests:
+              cpu: 100m
+              memory: 50Mi
+            limits:
+              cpu: 200m
+              memory: 100Mi

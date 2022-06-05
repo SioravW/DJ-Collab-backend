@@ -1,0 +1,31 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: playlistservice
+  namespace: backend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: PlaylistService
+  strategy:
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: PlaylistService
+    spec:
+      containers:
+        - name: playlistservice
+          image: sioravw/dj-collab:playlistservice
+          ports:
+            - name: http
+              containerPort: 8082
+          resources:
+            requests:
+              cpu: 100m
+              memory: 50Mi
+            limits:
+              cpu: 200m
+              memory: 100Mi
