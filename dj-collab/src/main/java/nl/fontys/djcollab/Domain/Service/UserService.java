@@ -1,6 +1,6 @@
 package nl.fontys.djcollab.Domain.Service;
 
-import nl.fontys.djcollab.Database.Repository.IUserRepository;
+import nl.fontys.djcollab.Database.Repository.UserRepository;
 import nl.fontys.djcollab.Domain.DTO.AddUserDTO;
 import nl.fontys.djcollab.Domain.DTO.UpdateUserDTO;
 import nl.fontys.djcollab.Domain.Events.UsernameChangeEvent;
@@ -20,10 +20,10 @@ import java.util.UUID;
 public class UserService {
 
     public List<User> users;
-    private IUserRepository repository;
+    private final UserRepository repository;
 
     @Autowired
-    private UserService(IUserRepository repository) {
+    private UserService(UserRepository repository) {
         this.repository = repository;
     }
 

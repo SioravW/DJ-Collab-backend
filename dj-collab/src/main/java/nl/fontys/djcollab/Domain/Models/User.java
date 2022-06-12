@@ -1,15 +1,19 @@
 package nl.fontys.djcollab.Domain.Models;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
+import org.springframework.data.mongodb.core.mapping.Document;
 
-import javax.persistence.*;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import java.util.UUID;
 
 @Getter
 @Setter
-@Entity
-@Table(name="[user]")
+@Document("users")
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class User {
 
     @Id
