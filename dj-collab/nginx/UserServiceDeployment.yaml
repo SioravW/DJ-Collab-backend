@@ -17,8 +17,8 @@ spec:
         app: UserService
     spec:
       containers:
-        - name: registry.digitalocean.com/djcollab
-          image: sioravw/dj-collab:userservice
+        - name: userservice
+          image: sioravw/userservice:latest
           ports:
             - name: http
               containerPort: 8081

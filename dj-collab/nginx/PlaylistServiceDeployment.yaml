@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
         - name: playlistservice
-          image: sioravw/dj-collab:playlistservice
+          image: sioravw/userservice:latest
           ports:
             - name: http
               containerPort: 8082

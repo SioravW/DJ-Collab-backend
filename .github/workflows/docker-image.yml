@@ -33,4 +33,4 @@ jobs:
       with:
         context: ./dj-collab
         push: true
-        tags: sioravw/dj-collab:userservice
+        tags: sioravw/userservice:latest
