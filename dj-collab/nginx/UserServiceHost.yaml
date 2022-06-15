@@ -1,0 +1,24 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ingress-userservice
+  namespace: backend
+  # annotations:
+  #   cert-manager.io/issuer: letsencrypt-nginx
+spec:
+  # tls:
+  # - hosts:
+  #   - echo.starter-kit.online
+  #   secretName: letsencrypt-nginx-echo
+  rules:
+    - host: userservice.siora.nl
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: userservice
+                port:
+                  number: 8081
+  ingressClassName: nginx

@@ -1,17 +1,14 @@
-FROM adoptopenjdk:11-jre-hotspot as builder
+# For Java 11, try this
+FROM adoptopenjdk/openjdk11:alpine-jre
+
+# Refer to Maven build -> finalName
 ARG JAR_FILE=target/*.jar
-COPY ${JAR_FILE}  user-service.jar
-RUN java -Djarmode=layertools -jar user-service.jar extract
 
-FROM adoptopenjdk:11-jre-hotspot
+# cd /opt/app
+WORKDIR /opt/app
 
-RUN useradd -ms /bin/bash spring
-USER spring
-WORKDIR /usr/app/
+# cp target/spring-boot-web.jar /opt/app/app.jar
+COPY ${JAR_FILE} userService.jar
 
-COPY --from=builder dependencies/ ./
-COPY --from=builder snapshot-dependencies/ ./
-COPY --from=builder spring-boot-loader/ ./
-COPY --from=builder application/ ./
-
-ENTRYPOINT ["java", "org.springframework.boot.loader.JarLauncher"]
+# java -jar /opt/app/app.jar
+ENTRYPOINT ["java","-jar","userService.jar"]
