@@ -1,0 +1,24 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ingress-message-broker
+  namespace: backend
+  # annotations:
+  #   cert-manager.io/issuer: letsencrypt-nginx
+spec:
+  # tls:
+  # - hosts:
+  #   - echo.starter-kit.online
+  #   secretName: letsencrypt-nginx-echo
+  rules:
+    - host: rabbitmq.siora.nl
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: message-broker
+                port:
+                  number: 15672
+  ingressClassName: nginx

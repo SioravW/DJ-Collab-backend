@@ -6,8 +6,8 @@ metadata:
   namespace: backend
 spec:
   ports:
-    - name: http
-      port: 80
-      targetPort: 8081
+    - protocol: TCP
+      port: 8081
+      targetPort: http
   selector:
-    app: UserService
+    app: userservice
