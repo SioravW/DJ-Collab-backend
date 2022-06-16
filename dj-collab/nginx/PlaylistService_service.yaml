@@ -6,8 +6,8 @@ metadata:
   namespace: backend
 spec:
   ports:
-    - name: http
-      port: 80
-      targetPort: 8082
+    - protocol: TCP
+      port: 8082
+      targetPort: http
   selector:
-    app: PlaylistService
+    app: playlistservice
