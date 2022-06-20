@@ -1,4 +1,4 @@
-package nl.fontys.djcollab.Config;
+package nl.fontys.djcollab.config;
 
 import org.springframework.amqp.rabbit.connection.ConnectionFactory;
 import org.springframework.amqp.core.*;
