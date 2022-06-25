@@ -2,13 +2,14 @@ apiVersion: autoscaling/v2beta2
 kind: HorizontalPodAutoscaler
 metadata:
   name: userservicehpa
+  namespace: backend
 spec:
   scaleTargetRef:
     apiVersion: apps/v1
     kind: Deployment
     name: userservice
   minReplicas: 1
-  maxReplicas: 3
+  maxReplicas: 5
   metrics:
     - type: Resource
       resource:

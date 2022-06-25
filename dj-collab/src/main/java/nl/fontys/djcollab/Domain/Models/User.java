@@ -1,12 +1,12 @@
 package nl.fontys.djcollab.Domain.Models;
 
 import lombok.*;
+import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import java.util.UUID;
+
 
 @Getter
 @Setter
@@ -17,8 +17,8 @@ import java.util.UUID;
 public class User {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    @GeneratedValue
+    private String id;
 
     private UUID externalId;
     private String username;
