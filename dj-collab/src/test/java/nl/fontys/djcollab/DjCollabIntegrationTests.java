@@ -60,9 +60,6 @@ class DjCollabIntegrationTests {
 	@Container
 	public static final GenericContainer rabbit = new GenericContainer(DockerImageName.parse("rabbitmq:3.8-management"))
 			.withExposedPorts(5672, 15672);
-	@Rule
-	public OutputCaptureRule outputCapture = new OutputCaptureRule();
-
 
 	private final ObjectMapper mapper = new ObjectMapper();
 
