@@ -39,7 +39,9 @@ class HelloWorldUser(HttpUser):
 
     @task
     def add_playlist(self):
-         userId = self.client.post("/user", json={"username": "user", "password": "userpass"}).json()['id']
-         self.client.put(f"/user/{userId}", json={"externalId": userId, "username": "nieuweUsername", "password": "ookNieuw"}, name="/user/id")
-         self.client.get(f"/user/{userId}", name="/user/id")
-         self.client.delete(f"/user/{userId}", name="/user/id")
+         response = self.client.post("/user", json={"username": "user", "password": "userpass"})
+         if response.status_code == 200:
+            userId = response.json()['id']
+            self.client.put(f"/user/{userId}", json={"externalId": userId, "username": "nieuweUsername", "password": "ookNieuw"}, name="/user/id")
+            self.client.get(f"/user/{userId}", name="/user/id")
+            self.client.delete(f"/user/{userId}", name="/user/id")
