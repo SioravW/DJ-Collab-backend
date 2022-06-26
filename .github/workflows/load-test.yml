@@ -1,0 +1,26 @@
+name: load test
+
+on:
+  push:
+    branches: [ main, dev ]
+  pull_request:
+    branches: [ main, dev ]
+
+jobs:
+  playlist-service:
+
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./dj-collab
+
+    steps:
+    - uses: actions/checkout@v3
+    - uses: actions/setup-python@v4
+      with:
+        python-version: '3.8'
+    - run: python install locust
+    - name: loadtest
+      run: |
+        cd ./locust
+        locust
