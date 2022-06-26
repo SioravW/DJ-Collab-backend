@@ -40,7 +40,6 @@ import java.util.concurrent.TimeUnit;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import static org.awaitility.Awaitility.await;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.oidcLogin;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
@@ -155,7 +154,6 @@ class DjCollabIntegrationTests {
 
 		Thread.sleep(5000);
 
-		//TODO: check rabbitMQ
 		response = new RestTemplate().exchange(url, HttpMethod.GET, request, String.class);
 
 		// get JSON response
