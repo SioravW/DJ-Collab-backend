@@ -9,7 +9,6 @@ response = requests.post(
     "http://keycloak.siora.nl/auth/realms/djcollab-realm/protocol/openid-connect/token",
     data=payload
 ).json()
-print(response)
 auth_token = response['access_token']
 
 @events.quitting.add_listener
