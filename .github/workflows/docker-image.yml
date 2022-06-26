@@ -44,4 +44,4 @@ jobs:
         tags: sioravw/userservice:latest
         
     - name: Deploy to DigitalOcean Kubernetes
-      run: kubectl apply -f nginx/UserServiceDeployment.yaml
+      run: kubectl rollout restart -n backend deployment userservice
