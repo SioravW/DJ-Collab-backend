@@ -10,7 +10,7 @@ on:
     branches: [ main, dev ]
 
 jobs:
-  activity-service:
+  user-service:
 
     runs-on: ubuntu-latest
     defaults:
